@@ -4,6 +4,7 @@ import { RecoilRoot } from "recoil";
 import styles from "./App.module.scss";
 import RequireAuth from "./hoc/RequireAuth";
 import { Login } from "./pages/Login";
+import { Registration } from "./pages/Registration";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
               }
             />
             <Route path="login" element={<Login />} />
+            <Route path="registration" element={<Registration />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>

@@ -19,6 +19,7 @@ const Registration = () => {
             ...registrationState,
             isSubmittingForm: true,
           });
+          console.log("asd");
           createUser(val);
         }}
       />

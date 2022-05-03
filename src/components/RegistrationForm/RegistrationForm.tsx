@@ -1,8 +1,9 @@
 import { Box, TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { FC } from "react";
-import { useFormik } from "formik";
-import { validationSchema, initialValues } from "./formData";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { validationSchema, IInitialValues } from "./formData";
 import styles from "./RegistrationForm.module.scss";
 
 interface IRegistrationForm {
@@ -14,43 +15,44 @@ const RegistrationForm: FC<IRegistrationForm> = ({
   isSubmittingForm,
   onSubmit,
 }) => {
-  const { values, errors, isValid, handleChange, handleSubmit } = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit,
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IInitialValues>({
+    mode: "onChange",
+    resolver: yupResolver(validationSchema),
   });
+
   return (
-    <Box className={styles.form} component={"form"} onSubmit={handleSubmit}>
+    <Box
+      className={styles.form}
+      component={"form"}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <TextField
-        name="login"
-        value={values.login}
+        {...register("login")}
         type="email"
         label="Email"
-        error={!!errors.login}
-        helperText={errors.login}
-        onChange={handleChange("login")}
+        error={!!errors.login?.message}
+        helperText={errors.login?.message}
       />
       <TextField
-        name="password"
-        value={values.password}
+        {...register("password")}
         type="password"
         label="Пароль"
-        error={!!errors.password}
-        helperText={errors.password}
-        onChange={handleChange("password")}
+        error={!!errors.password?.message}
+        helperText={errors.password?.message}
       />
       <TextField
-        name="passwordConfirm"
-        value={values.passwordConfirm}
+        {...register("passwordConfirm")}
         type="password"
         label="Подтверждение пароля"
-        error={!!errors.passwordConfirm}
-        helperText={errors.passwordConfirm}
-        onChange={handleChange("passwordConfirm")}
+        error={!!errors.passwordConfirm?.message}
+        helperText={errors.passwordConfirm?.message}
       />
       <LoadingButton
         loading={isSubmittingForm}
-        disabled={!isValid}
         type="submit"
         variant="contained"
       >

@@ -7,29 +7,25 @@ import { authAtom } from "./authState";
 export const useAuthActions = () => {
   const [user, setUser] = useRecoilState(authAtom);
   const auth = getAuth();
-  const login = (userData: IUserLogin) => {
+  const signIn = (userData: IUserLogin, cb = () => {}) => {
     signInWithEmailAndPassword(auth, userData.login, userData.password)
       .then((userCredential) => {
         const user = userCredential.user;
         localStorage.setItem("user", JSON.stringify(user));
         setUser(userCredential.user);
+        cb();
       })
-      .catch((error: FirebaseError) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("errorCode", error);
-        console.log("errorMessage", errorMessage);
-      });
+      .catch((FirebaseError) => {});
   };
 
-  const logout = () => {
+  const signOot = () => {
     localStorage.removeItem("user");
     setUser(null);
   };
 
   return {
     isAuth: user !== null,
-    login,
-    logout,
+    signIn,
+    signOot,
   };
 };

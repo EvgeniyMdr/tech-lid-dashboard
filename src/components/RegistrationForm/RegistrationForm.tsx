@@ -56,7 +56,7 @@ const RegistrationForm: FC<IRegistrationForm> = ({
         type="submit"
         variant="contained"
       >
-        Авторизоваться
+        Зарегистрироваться
       </LoadingButton>
     </Box>
   );

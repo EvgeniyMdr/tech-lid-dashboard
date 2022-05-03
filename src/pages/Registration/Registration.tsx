@@ -3,12 +3,13 @@ import { useRecoilState } from "recoil";
 import { RegistrationForm } from "../../components/RegistrationForm";
 import { registrationAtom } from "../../store/registration/registrationState";
 import styles from "./Registration.module.scss";
+import { useRegistrationAction } from "../../store/registration/registrationActions";
 
 const Registration = () => {
+  const { createUser } = useRegistrationAction();
   const [registrationState, setRegistrationsState] =
     useRecoilState(registrationAtom);
 
-  console.log("registrationState", registrationState);
   return (
     <div className={styles.page}>
       <RegistrationForm
@@ -18,7 +19,7 @@ const Registration = () => {
             ...registrationState,
             isSubmittingForm: true,
           });
-          console.log("val", val);
+          createUser(val);
         }}
       />
       <div className={styles.loginWrapper}>

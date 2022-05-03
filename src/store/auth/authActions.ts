@@ -24,7 +24,7 @@ export const useAuthActions = () => {
   };
 
   const checkAuth = (): boolean => {
-    if (user !== null) {
+    if (user?.uid !== null && user?.email) {
       return true;
     }
     return false;

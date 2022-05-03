@@ -3,38 +3,27 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styles from "./App.module.scss";
 import NotSignPage from "./hoc/NotSignPage";
 import RequireAuth from "./hoc/RequireAuth";
-import { Login } from "./pages/Login";
-import { Registration } from "./pages/Registration";
+import { routes } from "./constants/routes";
+import { Header } from "./components/Header";
 
 const App = () => {
   return (
     <div className={styles.App}>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={
+          {routes.map((el) => {
+            const element = el.private ? (
               <RequireAuth>
-                <div>main</div>
+                <>
+                  <Header />
+                  {el.component}
+                </>
               </RequireAuth>
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <NotSignPage>
-                <Login />
-              </NotSignPage>
-            }
-          />
-          <Route
-            path="registration"
-            element={
-              <NotSignPage>
-                <Registration />
-              </NotSignPage>
-            }
-          />
+            ) : (
+              <NotSignPage>{el.component}</NotSignPage>
+            );
+            return <Route path={el.path} element={el.component}></Route>;
+          })}
         </Routes>
       </BrowserRouter>
     </div>

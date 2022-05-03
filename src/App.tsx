@@ -11,19 +11,24 @@ const App = () => {
     <div className={styles.App}>
       <BrowserRouter>
         <Routes>
-          {routes.map((el) => {
-            const element = el.private ? (
-              <RequireAuth>
-                <>
-                  <Header />
-                  {el.component}
-                </>
-              </RequireAuth>
-            ) : (
-              <NotSignPage>{el.component}</NotSignPage>
-            );
-            return <Route path={el.path} element={el.component}></Route>;
-          })}
+          {routes.map((el, index) => (
+            <Route
+              key={index}
+              path={el.path}
+              element={
+                el.private ? (
+                  <RequireAuth>
+                    <>
+                      <Header />
+                      {el.component}
+                    </>
+                  </RequireAuth>
+                ) : (
+                  <NotSignPage>{el.component}</NotSignPage>
+                )
+              }
+            />
+          ))}
         </Routes>
       </BrowserRouter>
     </div>

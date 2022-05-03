@@ -9,7 +9,6 @@ interface IRequireAuth {
 const RequireAuth: FC<IRequireAuth> = ({ children }) => {
   const location = useLocation();
   const { isAuth } = useAuthActions();
-
   if (!isAuth) {
     return <Navigate to="/login" state={{ from: location.pathname }} />;
   }

@@ -24,7 +24,7 @@ export const useAuthActions = () => {
   };
 
   const checkAuth = (): boolean => {
-    if (user.uid !== null && user.apiKey) {
+    if (user !== null) {
       return true;
     }
     return false;

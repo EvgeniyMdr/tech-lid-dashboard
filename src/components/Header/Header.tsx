@@ -4,12 +4,19 @@ import { Logo, LogoText } from "@/assets/icons";
 import { IconButton } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useAuthActions } from "@/store/auth/authActions";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const { signOut } = useAuthActions();
+
+  const logoClickHandler = () => {
+    navigate("/");
+  };
+
   return (
     <header className={styles.header}>
-      <div>
+      <div className={styles.logoWrapper} onClick={logoClickHandler}>
         <Logo />
         <LogoText />
       </div>

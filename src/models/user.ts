@@ -9,7 +9,7 @@ export interface IUserRegistration {
   passwordConfirm: string;
 }
 
-export interface ICreateEmployee {
+export interface IShortEmployeeData {
   name: string;
   positionAtWork: string;
   avatar?: string;

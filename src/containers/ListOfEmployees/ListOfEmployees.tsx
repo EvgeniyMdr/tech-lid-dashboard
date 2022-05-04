@@ -1,12 +1,12 @@
-import { ICreateEmployee } from "@/models/user";
+import { IShortEmployeeData } from "@/models/user";
 import { useEmployeesActions } from "@/store/employees/employeesActions";
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormNewEmployee } from "./components/FormNewEmployee";
 import styles from "./ListOfEmployees.module.scss";
 
 const ListOfEmployees = () => {
-  const { createEmployee } = useEmployeesActions();
+  const { createEmployee, getEmployeesList } = useEmployeesActions();
   const [isFormCreateOpen, setIsFormCreateOpen] = useState<boolean>(false);
 
   const openCreateFrom = () => {
@@ -17,10 +17,14 @@ const ListOfEmployees = () => {
     setIsFormCreateOpen(false);
   };
 
-  const createEmployeeSubmitHandler = (user: ICreateEmployee) => {
+  const createEmployeeSubmitHandler = (user: IShortEmployeeData) => {
     createEmployee(user);
     closeCreateForm();
   };
+
+  useEffect(() => {
+    getEmployeesList();
+  }, [getEmployeesList]);
 
   return (
     <div className={styles.header}>

@@ -6,11 +6,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema, IInitialValues } from "./formData";
 import styles from "./FormNewEmployee.module.scss";
-import { ICreateEmployee } from "@/models/user";
+import { IShortEmployeeData } from "@/models/user";
 interface IFormNewEmployee {
   isOpen: boolean;
   handleClose: () => void;
-  onSubmit: (user: ICreateEmployee) => void;
+  onSubmit: (user: IShortEmployeeData) => void;
 }
 const FormNewEmployee: FC<IFormNewEmployee> = ({
   isOpen,
@@ -32,7 +32,7 @@ const FormNewEmployee: FC<IFormNewEmployee> = ({
     handleClose();
   };
 
-  const submitHandler = (user: ICreateEmployee) => {
+  const submitHandler = (user: IShortEmployeeData) => {
     reset();
     onSubmit(user);
   };

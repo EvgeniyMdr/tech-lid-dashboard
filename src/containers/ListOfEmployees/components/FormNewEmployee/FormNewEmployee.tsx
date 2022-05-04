@@ -1,6 +1,6 @@
 import { DialogTitle } from "@mui/material";
 import { FC } from "react";
-import { Modal } from "../../../../components/Modal";
+import { Modal } from "@/components/Modal";
 interface IFormNewEmployee {
   isOpen: boolean;
   handleClose: () => void;

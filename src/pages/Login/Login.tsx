@@ -1,8 +1,8 @@
 import { ErrorBoundary } from "react-error-boundary";
 import { Link, Location, useLocation, useNavigate } from "react-router-dom";
-import { LoginForm } from "../../components/LoginForm";
-import { useAuthActions } from "../../store/auth/authActions";
-import { IStateLocation } from "../../types";
+import { LoginForm } from "@/components/LoginForm";
+import { useAuthActions } from "@/store/auth/authActions";
+import { IStateLocation } from "@/types";
 import styles from "./Login.module.scss";
 
 const Login = () => {

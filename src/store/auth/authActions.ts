@@ -1,7 +1,7 @@
 import { FirebaseError } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRecoilState } from "recoil";
-import { IUserLogin } from "../../models/user";
+import { IUserLogin } from "@/models/user";
 import { authAtom } from "./authState";
 
 export const useAuthActions = () => {

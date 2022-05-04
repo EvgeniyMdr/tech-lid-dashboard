@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Navigate, useLocation, Location } from "react-router-dom";
-import { useAuthActions } from "../store/auth/authActions";
-import { IStateLocation } from "../types";
+import { useAuthActions } from "@/store/auth/authActions";
+import { IStateLocation } from "@/types";
 
 interface IProps {
   children: JSX.Element;

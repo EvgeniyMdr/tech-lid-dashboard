@@ -1,6 +1,6 @@
-import { Home } from "../pages/Home";
-import { Login } from "../pages/Login";
-import { Registration } from "../pages/Registration";
+import { Home } from "@/pages/Home";
+import { Login } from "@/pages/Login";
+import { Registration } from "@/pages/Registration";
 
 interface IRoute {
   component: JSX.Element;

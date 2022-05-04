@@ -1,5 +1,10 @@
 @import '../../constants/index.scss';
 
 .header {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  padding: 16px 24px;
   background: $color-white;
+  box-shadow: 0px 5px 10px 0px rgba(34, 60, 80, 0.2);
 }

@@ -1,7 +1,11 @@
-import React from "react";
+import { ListOfEmployees } from "../../containers/ListOfEmployees";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <ListOfEmployees />
+    </div>
+  );
 };
 
 export default Home;

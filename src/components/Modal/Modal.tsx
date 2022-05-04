@@ -11,6 +11,7 @@ interface IModal {
 const Modal: FC<IModal> = ({ isOpen, handleClose, children }) => {
   return (
     <Dialog className={styles.wrapper} open={isOpen} onClose={handleClose}>
+      <span onClick={handleClose} className={styles.close} />
       {children}
     </Dialog>
   );

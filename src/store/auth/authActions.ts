@@ -18,7 +18,7 @@ export const useAuthActions = () => {
       .catch((FirebaseError) => {});
   };
 
-  const signOot = () => {
+  const signOut = () => {
     localStorage.removeItem("user");
     setUser(null);
   };
@@ -33,6 +33,6 @@ export const useAuthActions = () => {
   return {
     isAuth: checkAuth(),
     signIn,
-    signOot,
+    signOut,
   };
 };

@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styles from "./App.module.scss";
 import NotSignPage from "./hoc/NotSignPage";
@@ -20,7 +19,7 @@ const App = () => {
                   <RequireAuth>
                     <>
                       <Header />
-                      {el.component}
+                      <main className={styles.pageWrapper}>{el.component}</main>
                     </>
                   </RequireAuth>
                 ) : (

@@ -1,4 +1,4 @@
-import { ListOfEmployees } from "../../containers/ListOfEmployees";
+import { ListOfEmployees } from "@/containers/ListOfEmployees";
 
 const Home = () => {
   return (

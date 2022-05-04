@@ -1,30 +1,27 @@
+import { useNavigate } from "react-router-dom";
+import { useEmployeesActions } from "@/store/employees/employeesActions";
 import { Button } from "@mui/material";
-import { useState } from "react";
-import { FormNewEmployee } from "./components/FormNewEmployee";
+import { useEffect } from "react";
 import styles from "./ListOfEmployees.module.scss";
 
 const ListOfEmployees = () => {
-  const [isFormCreateOpen, setIsFormCreateOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const { getEmployeesList } = useEmployeesActions();
 
-  const openCreateFrom = () => {
-    setIsFormCreateOpen(true);
-  };
+  useEffect(() => {
+    getEmployeesList();
+  }, [getEmployeesList]);
 
-  const closeCreateForm = () => {
-    setIsFormCreateOpen(false);
+  const createEmployeeClickHandler = () => {
+    navigate("/create-employee");
   };
 
   return (
     <div className={styles.header}>
       <h2>Список сотрудников</h2>
-      <Button variant="outlined" onClick={openCreateFrom}>
+      <Button variant="outlined" onClick={createEmployeeClickHandler}>
         Создать профиль сотрудника
       </Button>
-      <FormNewEmployee
-        isOpen={isFormCreateOpen}
-        handleClose={closeCreateForm}
-        onSubmit={() => {}}
-      />
     </div>
   );
 };

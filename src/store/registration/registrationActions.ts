@@ -1,7 +1,7 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useSetRecoilState } from "recoil";
-import { IUserRegistration } from "../../models/user";
-import { authAtom } from "../auth/authState";
+import { IUserRegistration } from "@/models/user";
+import { authAtom } from "@/store/auth/authState";
 import { registrationAtom } from "./registrationState";
 
 export const useRegistrationAction = () => {

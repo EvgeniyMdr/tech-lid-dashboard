@@ -8,3 +8,9 @@ export interface IUserRegistration {
   password: string;
   passwordConfirm: string;
 }
+
+export interface IShortEmployeeData {
+  name: string;
+  positionAtWork: string;
+  avatar?: string;
+}

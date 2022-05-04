@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import styles from "./App.module.scss";
-import NotSignPage from "./hoc/NotSignPage";
-import RequireAuth from "./hoc/RequireAuth";
-import { routes } from "./constants/routes";
-import { Header } from "./components/Header";
+import styles from "@/App.module.scss";
+import NotSignPage from "@/hoc/NotSignPage";
+import RequireAuth from "@/hoc/RequireAuth";
+import { routes } from "@/constants/routes";
+import { Header } from "@/components/Header";
 
 const App = () => {
   return (

@@ -1,6 +1,7 @@
-import { Home } from "../pages/Home";
-import { Login } from "../pages/Login";
-import { Registration } from "../pages/Registration";
+import { CreateEmployeePage } from "@/pages/CreateEmployeePage";
+import { Home } from "@/pages/Home";
+import { Login } from "@/pages/Login";
+import { Registration } from "@/pages/Registration";
 
 interface IRoute {
   component: JSX.Element;
@@ -23,5 +24,10 @@ export const routes: IRoute[] = [
     component: <Home />,
     private: true,
     path: "/",
+  },
+  {
+    component: <CreateEmployeePage />,
+    private: true,
+    path: "/create-employee",
   },
 ];

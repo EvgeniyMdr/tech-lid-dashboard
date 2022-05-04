@@ -1,6 +1,21 @@
-import { atom } from "recoil";
+import { db } from "@/api";
+import { IShortEmployeeData } from "@/models/user";
+import { collection, getDocs } from "firebase/firestore";
+import { atom, selector } from "recoil";
 
-export const employeesAtom = atom({
+interface IEmployeesAtom {
+  isSubmittingForm: boolean;
+  isErrorForm: boolean;
+  isFetching: boolean;
+  data: null | IShortEmployeeData[];
+}
+
+export const employeesAtom = atom<IEmployeesAtom>({
   key: "atom/Employees",
-  default: null,
+  default: {
+    isSubmittingForm: false,
+    isErrorForm: false,
+    isFetching: false,
+    data: null,
+  },
 });

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { RegistrationForm } from "../../components/RegistrationForm";
-import { registrationAtom } from "../../store/registration/registrationState";
+import { RegistrationForm } from "@/components/RegistrationForm";
+import { registrationAtom } from "@/store/registration/registrationState";
+import { useRegistrationAction } from "@/store/registration/registrationActions";
 import styles from "./Registration.module.scss";
-import { useRegistrationAction } from "../../store/registration/registrationActions";
 
 const Registration = () => {
   const { createUser } = useRegistrationAction();

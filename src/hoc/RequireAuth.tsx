@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { useAuthActions } from "../store/auth/authActions";
+import { useAuthActions } from "@/store/auth/authActions";
 
 interface IRequireAuth {
   children: JSX.Element;

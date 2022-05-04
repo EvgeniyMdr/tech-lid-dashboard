@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import styles from "./App.module.scss";
+import NotSignPage from "./hoc/NotSignPage";
+import RequireAuth from "./hoc/RequireAuth";
+import { routes } from "./constants/routes";
+import { Header } from "./components/Header";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.App}>
+      <BrowserRouter>
+        <Routes>
+          {routes.map((el, index) => (
+            <Route
+              key={index}
+              path={el.path}
+              element={
+                el.private ? (
+                  <RequireAuth>
+                    <>
+                      <Header />
+                      <main className={styles.pageWrapper}>{el.component}</main>
+                    </>
+                  </RequireAuth>
+                ) : (
+                  <NotSignPage>{el.component}</NotSignPage>
+                )
+              }
+            />
+          ))}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;

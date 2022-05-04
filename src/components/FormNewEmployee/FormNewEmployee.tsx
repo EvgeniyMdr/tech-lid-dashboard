@@ -1,12 +1,12 @@
 import { DialogTitle, Box, TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { FC } from "react";
-import { Modal } from "@/components/Modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema, IInitialValues } from "./formData";
 import styles from "./FormNewEmployee.module.scss";
 import { IShortEmployeeData } from "@/models/user";
+import { InputMultipleData } from "@/components/InputMultipleData";
 interface IFormNewEmployee {
   onSubmit: (user: IShortEmployeeData) => void;
 }
@@ -53,6 +53,11 @@ const FormNewEmployee: FC<IFormNewEmployee> = ({ onSubmit }) => {
         label="Ссылка на аватар"
         error={!!errors.avatar?.message}
         helperText={errors.avatar?.message}
+      />
+      <InputMultipleData
+        onChange={(skills) => {
+          console.log("skills", skills);
+        }}
       />
       <LoadingButton loading={false} type="submit" variant="contained">
         Создать

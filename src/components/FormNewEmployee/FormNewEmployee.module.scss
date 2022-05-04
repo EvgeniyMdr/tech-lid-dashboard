@@ -2,9 +2,9 @@
   padding: 16px 16px 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
-
+  max-width: 720px;
 
   :global(.MuiTextField-root) {
     width: 100%;

@@ -1,7 +1,6 @@
-import React, { useState, FC } from "react";
-import { IconButton, TextField } from "@mui/material";
+import React, { useState, FC, useEffect } from "react";
+import { Chip, IconButton, TextField } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./InputMultipleData.module.scss";
@@ -41,11 +40,13 @@ const InputMultipleData: FC<IInputMultipleData> = ({
     };
     setSkills((prev) => {
       if (prev !== null) {
-        onChange(JSON.stringify([...prev, newSkill]));
-        return [...prev, newSkill];
+        const newArr = [...prev, newSkill];
+        onChange(JSON.stringify(newArr));
+        return newArr;
       } else {
-        onChange(JSON.stringify([newSkill]));
-        return [newSkill];
+        const newArr = [newSkill];
+        onChange(JSON.stringify(newArr));
+        return newArr;
       }
     });
     reset();
@@ -72,7 +73,7 @@ const InputMultipleData: FC<IInputMultipleData> = ({
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <div className={styles.form}>
         <TextField
           {...register("text")}
@@ -94,12 +95,11 @@ const InputMultipleData: FC<IInputMultipleData> = ({
       {skills && (
         <div className={styles.dataWrapper}>
           {skills.map((el, index) => (
-            <div className={styles.dataItem} key={el.id + index}>
-              {el.text}
-              <IconButton onClick={() => deleteElementClickHandler(el.id)}>
-                <DeleteIcon />
-              </IconButton>
-            </div>
+            <Chip
+              label={el.text}
+              onDelete={() => deleteElementClickHandler(el.id)}
+              key={el.id + index}
+            />
           ))}
         </div>
       )}

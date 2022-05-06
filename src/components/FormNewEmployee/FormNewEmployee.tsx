@@ -10,11 +10,14 @@ import { InputMultipleData } from "@/components/InputMultipleData";
 interface IFormNewEmployee {
   onSubmit: (user: IShortEmployeeData) => void;
 }
+
+type IFields = "name" | "skills" | "positionAtWork" | "avatar" | "projects";
 const FormNewEmployee: FC<IFormNewEmployee> = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<IInitialValues>({
     mode: "onChange",
@@ -24,6 +27,10 @@ const FormNewEmployee: FC<IFormNewEmployee> = ({ onSubmit }) => {
   const submitHandler = (user: IShortEmployeeData) => {
     reset();
     onSubmit(user);
+  };
+
+  const setValueHandler = (fieldName: IFields, value: string | null) => {
+    setValue(fieldName, value || "", { shouldValidate: true });
   };
 
   return (
@@ -54,11 +61,39 @@ const FormNewEmployee: FC<IFormNewEmployee> = ({ onSubmit }) => {
         error={!!errors.avatar?.message}
         helperText={errors.avatar?.message}
       />
-      <InputMultipleData
-        onChange={(skills) => {
-          console.log("skills", skills);
-        }}
+      <TextField
+        {...register("avatar")}
+        type="text"
+        label="Текущий проект"
+        error={!!errors.avatar?.message}
+        helperText={errors.avatar?.message}
       />
+      <InputMultipleData
+        label="Технология и уровень"
+        onChange={(data) => {
+          setValueHandler("skills", data);
+        }}
+      >
+        <>
+          <input {...register("skills")} type={"hidden"} />
+          {!!errors.skills?.message && (
+            <p className={styles.errorText}>{errors.skills?.message}</p>
+          )}
+        </>
+      </InputMultipleData>
+      <InputMultipleData
+        label="Предыдущие проекты"
+        onChange={(data) => {
+          setValueHandler("projects", data);
+        }}
+      >
+        <>
+          <input {...register("projects")} type={"hidden"} />
+          {!!errors.projects?.message && (
+            <p className={styles.errorText}>{errors.projects?.message}</p>
+          )}
+        </>
+      </InputMultipleData>
       <LoadingButton loading={false} type="submit" variant="contained">
         Создать
       </LoadingButton>

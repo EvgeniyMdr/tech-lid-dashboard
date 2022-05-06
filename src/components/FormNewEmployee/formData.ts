@@ -1,14 +1,20 @@
 import * as Yup from "yup";
 const validationErrorTextRequired = "Обязательное поле для ввода";
+const validationErrorTextRequiredOneElem =
+  "Обязательное добавить минимум 1 элемент";
 
 export interface IInitialValues {
   name: string;
   positionAtWork: string;
   avatar: string;
+  skills: string;
+  projects: string;
 }
 
 export const validationSchema = Yup.object().shape({
   name: Yup.string().required(validationErrorTextRequired),
   positionAtWork: Yup.string().required(validationErrorTextRequired),
   avatar: Yup.string(),
+  skills: Yup.string().required(validationErrorTextRequiredOneElem),
+  projects: Yup.string().required(validationErrorTextRequiredOneElem),
 });

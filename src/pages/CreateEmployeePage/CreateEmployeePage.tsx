@@ -6,13 +6,14 @@ import React, { useState } from "react";
 const CreateEmployeePage = () => {
   const { createEmployee } = useEmployeesActions();
   const createEmployeeSubmitHandler = (user: IShortEmployeeData) => {
-    createEmployee(user);
+    console.log("USER", user);
+    // createEmployee(user);
   };
   return (
     <div>
       <FormNewEmployee onSubmit={createEmployeeSubmitHandler} />
     </div>
   );
-};
+};;
 
 export default CreateEmployeePage;

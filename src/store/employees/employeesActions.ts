@@ -22,7 +22,6 @@ export const useEmployeesActions = () => {
         isFetching: true,
       }));
       await setDoc(doc(db, "users", id), user);
-      getEmployeesList();
       console.log("Материал создан", { variant: "success" });
     } catch (e) {
       console.log("ошибка при создании материала", { variant: "error" });

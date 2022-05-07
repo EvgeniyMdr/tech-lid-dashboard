@@ -1,10 +1,7 @@
-import React, { useState, FC, useEffect } from "react";
+import React, { useState, FC } from "react";
 import { Chip, IconButton, TextField } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./InputMultipleData.module.scss";
-import { IInitialValues, validationSchema } from "./formData";
 
 interface IData {
   id: number;
@@ -14,46 +11,57 @@ interface IData {
 interface IInputMultipleData {
   onChange: (skills: string | null) => void;
   label: string;
+  name: string;
   children?: JSX.Element;
 }
 
 const InputMultipleData: FC<IInputMultipleData> = ({
   label,
+  name,
   onChange,
   children,
 }) => {
-  const {
-    reset,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IInitialValues>({
-    mode: "onChange",
-    resolver: yupResolver(validationSchema),
-  });
-  const [skills, setSkills] = useState<IData[] | null>(null);
+  const [inputVal, setInputVal] = useState<string>("");
+  const [data, setData] = useState<IData[] | null>(null);
 
-  const submitHandler = ({ text }: { text: string }) => {
-    const newSkill: IData = {
-      id: new Date().getTime(),
-      text,
-    };
-    setSkills((prev) => {
-      if (prev !== null) {
-        const newArr = [...prev, newSkill];
-        onChange(JSON.stringify(newArr));
-        return newArr;
-      } else {
-        const newArr = [newSkill];
-        onChange(JSON.stringify(newArr));
-        return newArr;
-      }
-    });
-    reset();
+  // const submitHandler = ({ text }: { text: string }) => {
+  //   const newSkill: IData = {
+  //     id: new Date().getTime(),
+  //     text,
+  //   };
+  //   setSkills((prev) => {
+  //     if (prev !== null) {
+  //       const newArr = [...prev, newSkill];
+  //       onChange(JSON.stringify(newArr));
+  //       return newArr;
+  //     } else {
+  //       const newArr = [newSkill];
+  //       onChange(JSON.stringify(newArr));
+  //       return newArr;
+  //     }
+  //   });
+  // };
+  const addNewItemToData = () => {
+    if (inputVal.trim() !== "") {
+      const newData: IData = {
+        id: new Date().getTime(),
+        text: inputVal,
+      };
+      setData((prev) => {
+        if (prev === null) {
+          onChange(JSON.stringify([newData]));
+          return [newData];
+        } else {
+          onChange(JSON.stringify([...prev, newData]));
+          return [...prev, newData];
+        }
+      });
+      setInputVal("");
+    }
   };
 
   const deleteElementClickHandler = (id: number) => {
-    setSkills((prev) => {
+    setData((prev) => {
       const filteredArr = prev?.filter((el) => el.id !== id);
       if (filteredArr?.length) {
         onChange(JSON.stringify(filteredArr));
@@ -65,36 +73,31 @@ const InputMultipleData: FC<IInputMultipleData> = ({
     });
   };
 
-  const keyUpHandler = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      handleSubmit(submitHandler)();
-      event.preventDefault();
-    }
+  const inputChangeHandler = ({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    setInputVal(value);
   };
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.form}>
         <TextField
-          {...register("text")}
+          name={name}
+          value={inputVal}
+          onChange={inputChangeHandler}
           label={label}
           type="text"
-          error={!!errors.text?.message}
-          helperText={errors.text?.message}
           className={styles.field}
-          onKeyPress={keyUpHandler}
         />
-        <IconButton
-          onClick={handleSubmit(submitHandler)}
-          className={styles.deleteBtn}
-        >
+        <IconButton onClick={addNewItemToData} className={styles.deleteBtn}>
           <AddCircleOutlineIcon />
         </IconButton>
       </div>
       {children}
-      {skills && (
+      {data && (
         <div className={styles.dataWrapper}>
-          {skills.map((el, index) => (
+          {data.map((el, index) => (
             <Chip
               label={el.text}
               onDelete={() => deleteElementClickHandler(el.id)}

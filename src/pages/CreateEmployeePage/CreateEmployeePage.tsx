@@ -13,8 +13,8 @@ const CreateEmployeePage = () => {
     snack.enqueueSnackbar(`Пользователь ${user.name}`, {
       variant: "success",
     });
+    createEmployee(user);
     navigate("/");
-    // createEmployee(user);
   };
   return (
     <div>

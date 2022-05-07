@@ -1,6 +1,6 @@
 import { DialogTitle, Box, TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema, IInitialValues } from "./formData";
@@ -62,13 +62,14 @@ const FormNewEmployee: FC<IFormNewEmployee> = ({ onSubmit }) => {
         helperText={errors.avatar?.message}
       />
       <TextField
-        {...register("avatar")}
+        {...register("currentProject")}
         type="text"
         label="Текущий проект"
-        error={!!errors.avatar?.message}
-        helperText={errors.avatar?.message}
+        error={!!errors.currentProject?.message}
+        helperText={errors.currentProject?.message}
       />
       <InputMultipleData
+        name="multiSkills"
         label="Технология и уровень"
         onChange={(data) => {
           setValueHandler("skills", data);
@@ -82,6 +83,7 @@ const FormNewEmployee: FC<IFormNewEmployee> = ({ onSubmit }) => {
         </>
       </InputMultipleData>
       <InputMultipleData
+        name="multiProj"
         label="Предыдущие проекты"
         onChange={(data) => {
           setValueHandler("projects", data);

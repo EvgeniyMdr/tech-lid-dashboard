@@ -1,9 +1,12 @@
 import { ListOfEmployees } from "@/containers/ListOfEmployees";
+import React from "react";
 
 const Home = () => {
   return (
     <div>
-      <ListOfEmployees />
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <ListOfEmployees />
+      </React.Suspense>
     </div>
   );
 };

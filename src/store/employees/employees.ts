@@ -19,3 +19,16 @@ export const employeesAtom = atom<IEmployeesAtom>({
     data: null,
   },
 });
+
+export const employeesSelector = selector({
+  key: "selector/EmployeesList",
+  get: async () => {
+    const resp = await getDocs(collection(db, "users"));
+    console.log(resp);
+    const userList: IShortEmployeeData[] = [];
+    // resp.forEach((el) => {
+    //   userList.push(JSON.parse(el.data()));
+    // });
+    return userList;
+  },
+});

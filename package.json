@@ -37,7 +37,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch server/db.json"
+    "server": "json-server --watch server/db.json -d 500"
   },
   "eslintConfig": {
     "extends": [

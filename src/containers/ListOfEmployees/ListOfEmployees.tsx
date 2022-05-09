@@ -15,15 +15,6 @@ const ListOfEmployees = () => {
     navigate("/create-employee");
   };
 
-  useEffect(() => {
-    axios({
-      method: "get",
-      url: "http://localhost:3000/posts",
-    }).then((resp) => {
-      console.log("resp", resp);
-    });
-  }, []);
-
   return (
     <div className={styles.header}>
       <h2>Список сотрудников</h2>

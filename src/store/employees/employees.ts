@@ -2,6 +2,7 @@ import { db } from "@/api";
 import { IShortEmployeeData } from "@/models/user";
 import { collection, getDocs } from "firebase/firestore";
 import { atom, selector } from "recoil";
+import axios from "axios";
 
 interface IEmployeesAtom {
   isSubmittingForm: boolean;
@@ -23,12 +24,16 @@ export const employeesAtom = atom<IEmployeesAtom>({
 export const employeesSelector = selector({
   key: "selector/EmployeesList",
   get: async () => {
-    const resp = await getDocs(collection(db, "users"));
-    console.log(resp);
-    const userList: IShortEmployeeData[] = [];
-    // resp.forEach((el) => {
-    //   userList.push(JSON.parse(el.data()));
-    // });
-    return userList;
+    try {
+      const resp = await axios({
+        method: "get",
+        url: "http://localhost:3000/users",
+      });
+      console.log("resp", resp);
+      return resp.data;
+    } catch {
+      throw new Error("Ошибка получения данных");
+    }
   },
 });
+

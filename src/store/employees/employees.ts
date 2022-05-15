@@ -1,11 +1,10 @@
 // import { IEmployer } from "@/models/employer";
 import { IEmployer } from "@/models/employer";
 import axios from "axios";
-import { createEffect, createEvent, createStore } from "effector";
+import { createEffect, createStore } from "effector";
 
 export const fetchEmployeesFx = createEffect(async () => {
   const { data } = await axios.get("http://localhost:3000/employees");
-  console.log("resp", data);
   return data;
 });
 

@@ -17,6 +17,7 @@ const ListOfEmployees = () => {
   const createEmployeeClickHandler = () => {
     navigate("/create-employee");
   };
+    console.log(employees ? employees[0]?.avatar : null);
   return (
     <div>
       <div className={styles.header}>

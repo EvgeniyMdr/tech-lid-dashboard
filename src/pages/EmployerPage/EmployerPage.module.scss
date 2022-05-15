@@ -1,0 +1,21 @@
+.pageWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.employerWrapper { 
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.avatar {
+  max-width: 400px;
+}
+
+.controllers {
+  display: flex;
+  flex-direction: column;
+  gap: 16px
+}

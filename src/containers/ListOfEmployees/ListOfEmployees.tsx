@@ -1,26 +1,43 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import styles from "./ListOfEmployees.module.scss";
-import { useRecoilValue } from "recoil";
-import { employeesSelector } from "@/store/employees/employees";
 import { useEffect } from "react";
-import axios from "axios";
+import { $employeesStore, fetchEmployeesFx } from "@/store/employees/employees";
+import { useStore } from "effector-react";
+import { EmployerCard } from "@/components/EmployerCard";
 
 const ListOfEmployees = () => {
+  const employees = useStore($employeesStore);
   const navigate = useNavigate();
-  const userList = useRecoilValue(employeesSelector);
 
-  console.log("userList", userList);
+  useEffect(() => {
+    fetchEmployeesFx();
+  }, []);
+
   const createEmployeeClickHandler = () => {
     navigate("/create-employee");
   };
-
   return (
-    <div className={styles.header}>
-      <h2>Список сотрудников</h2>
-      <Button variant="outlined" onClick={createEmployeeClickHandler}>
-        Создать профиль сотрудника
-      </Button>
+    <div>
+      <div className={styles.header}>
+        <h2>Список сотрудников</h2>
+        <Button variant="outlined" onClick={createEmployeeClickHandler}>
+          Создать профиль сотрудника
+        </Button>
+      </div>
+      {employees && (
+        <div>
+          {employees.map(({ id, name, avatar, positionAtWork }) => (
+            <EmployerCard
+              key={id}
+              id={id}
+              name={name}
+              avatar={avatar}
+              positionAtWork={positionAtWork}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

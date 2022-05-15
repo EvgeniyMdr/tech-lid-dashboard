@@ -7,6 +7,7 @@ import { validationSchema, IInitialValues } from "./formData";
 import styles from "./FormNewEmployee.module.scss";
 import { IShortEmployeeData } from "@/models/user";
 import { InputMultipleData } from "@/components/InputMultipleData";
+import { IData } from "../InputMultipleData/InputMultipleData";
 interface IFormNewEmployee {
   onSubmit: (user: IShortEmployeeData) => void;
 }
@@ -29,8 +30,9 @@ const FormNewEmployee: FC<IFormNewEmployee> = ({ onSubmit }) => {
     onSubmit(user);
   };
 
-  const setValueHandler = (fieldName: IFields, value: string | null) => {
-    setValue(fieldName, value || "", { shouldValidate: true });
+  const setValueHandler = (fieldName: IFields, value: IData[] | null) => {
+    //@ts-ignore
+    setValue(fieldName, value || [], { shouldValidate: true });
   };
 
   return (

@@ -1,39 +1,15 @@
-import { db } from "@/api";
-import { IShortEmployeeData } from "@/models/user";
-import { collection, getDocs } from "firebase/firestore";
-import { atom, selector } from "recoil";
+// import { IEmployer } from "@/models/employer";
+import { IEmployer } from "@/models/employer";
 import axios from "axios";
+import { createEffect, createEvent, createStore } from "effector";
 
-interface IEmployeesAtom {
-  isSubmittingForm: boolean;
-  isErrorForm: boolean;
-  isFetching: boolean;
-  data: null | IShortEmployeeData[];
-}
-
-export const employeesAtom = atom<IEmployeesAtom>({
-  key: "atom/Employees",
-  default: {
-    isSubmittingForm: false,
-    isErrorForm: false,
-    isFetching: false,
-    data: null,
-  },
+export const fetchEmployeesFx = createEffect(async () => {
+  const { data } = await axios.get("http://localhost:3000/employees");
+  console.log("resp", data);
+  return data;
 });
 
-export const employeesSelector = selector({
-  key: "selector/EmployeesList",
-  get: async () => {
-    try {
-      const resp = await axios({
-        method: "get",
-        url: "http://localhost:3000/users",
-      });
-      console.log("resp", resp);
-      return resp.data;
-    } catch {
-      throw new Error("Ошибка получения данных");
-    }
-  },
-});
-
+export const $employeesStore = createStore<IEmployer[] | null>(null).on(
+  fetchEmployeesFx.doneData,
+  (_, employees) => employees
+);

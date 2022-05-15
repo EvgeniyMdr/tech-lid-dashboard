@@ -1,13 +1,42 @@
 {
-  "users": [
+  "employees": [
     {
-      "id": "'_o0lzfe2'",
+      "id": "_o0lzfe2",
       "avatar": "",
       "currentProject": "QNC",
       "name": "Гоев Сергей",
       "positionAtWork": "Реакт разработчик",
-      "projects": [{"id":1651922551365,"text":"Savinger-web"}],
-      "skills": [{"id":1651922539641,"text":"React-middle"}]
+      "projects": [
+        {
+          "id": 1651922551365,
+          "text": "Savinger-web"
+        }
+      ],
+      "skills": [
+        {
+          "id": 1651922539641,
+          "text": "React-middle"
+        }
+      ]
+    },
+    {
+      "id": "_10lzfe2",
+      "avatar": "",
+      "currentProject": "1QNC",
+      "name": "1Гоев Сергей",
+      "positionAtWork": "1Реакт разработчик",
+      "projects": [
+        {
+          "id": 111651922551365,
+          "text": "Savinger-web"
+        }
+      ],
+      "skills": [
+        {
+          "id": 111651922539641,
+          "text": "React-middle"
+        }
+      ]
     }
   ],
   "comments": []

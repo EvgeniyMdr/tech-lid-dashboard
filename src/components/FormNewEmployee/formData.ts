@@ -17,6 +17,6 @@ export const validationSchema = Yup.object().shape({
   positionAtWork: Yup.string().required(validationErrorTextRequired),
   avatar: Yup.string(),
   currentProject: Yup.string(),
-  skills: Yup.string().required(validationErrorTextRequiredOneElem),
-  projects: Yup.string().required(validationErrorTextRequiredOneElem),
+  skills: Yup.array().required(validationErrorTextRequiredOneElem),
+  projects: Yup.array().required(validationErrorTextRequiredOneElem),
 });

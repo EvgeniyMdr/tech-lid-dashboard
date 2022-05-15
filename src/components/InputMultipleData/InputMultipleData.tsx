@@ -3,13 +3,13 @@ import { Chip, IconButton, TextField } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import styles from "./InputMultipleData.module.scss";
 
-interface IData {
+export interface IData {
   id: number;
   text: string;
 }
 
 interface IInputMultipleData {
-  onChange: (skills: string | null) => void;
+  onChange: (skills: [] | null) => void;
   label: string;
   name: string;
   children?: JSX.Element;
@@ -49,10 +49,12 @@ const InputMultipleData: FC<IInputMultipleData> = ({
       };
       setData((prev) => {
         if (prev === null) {
-          onChange(JSON.stringify([newData]));
+          //@ts-ignore
+          onChange([newData]);
           return [newData];
         } else {
-          onChange(JSON.stringify([...prev, newData]));
+          // @ts-ignore
+          onChange([...prev, newData]);
           return [...prev, newData];
         }
       });
@@ -64,7 +66,8 @@ const InputMultipleData: FC<IInputMultipleData> = ({
     setData((prev) => {
       const filteredArr = prev?.filter((el) => el.id !== id);
       if (filteredArr?.length) {
-        onChange(JSON.stringify(filteredArr));
+        // @ts-ignore
+        onChange(filteredArr);
         return filteredArr;
       } else {
         onChange(null);

@@ -1,4 +1,5 @@
 import { CreateEmployeePage } from "@/pages/CreateEmployeePage";
+import { EmployerPage } from "@/pages/EmployerPage";
 import { Home } from "@/pages/Home";
 import { Login } from "@/pages/Login";
 import { Registration } from "@/pages/Registration";
@@ -29,5 +30,10 @@ export const routes: IRoute[] = [
     component: <CreateEmployeePage />,
     private: true,
     path: "/create-employee",
+  },
+  {
+    component: <EmployerPage />,
+    private: true,
+    path: "/employer/:id",
   },
 ];

@@ -1,0 +1,21 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: #f9f6f5;
+  border-radius: 16px;
+  color: rgb(19, 18, 18);
+}
+
+.link {
+  text-decoration: none;
+}
+
+.avatar {
+  margin: 0 auto;
+  max-width: 220px;
+}
+
+.name {
+  margin-bottom: 8px;
+}

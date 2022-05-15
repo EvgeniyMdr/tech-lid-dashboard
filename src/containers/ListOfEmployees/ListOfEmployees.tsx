@@ -26,7 +26,7 @@ const ListOfEmployees = () => {
         </Button>
       </div>
       {employees && (
-        <div>
+        <div className={styles.listOfEmployees}>
           {employees.map(({ id, name, avatar, positionAtWork }) => (
             <EmployerCard
               key={id}

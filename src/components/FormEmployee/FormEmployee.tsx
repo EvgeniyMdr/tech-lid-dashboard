@@ -33,8 +33,8 @@ const FormEmployee: FC<IFormNewEmployee> = ({
       positionAtWork: defaultValues?.positionAtWork,
       avatar: defaultValues?.avatar,
       currentProject: defaultValues?.currentProject,
-      skills: defaultValues?.skills.toString(),
-      projects: defaultValues?.projects.toString(),
+      skills: JSON.stringify(defaultValues?.skills || "") || "",
+      projects: JSON.stringify(defaultValues?.projects || "") || "",
     },
     mode: "onChange",
     resolver: yupResolver(validationSchema),
@@ -45,7 +45,7 @@ const FormEmployee: FC<IFormNewEmployee> = ({
     onSubmit(user);
   };
 
-  const setValueHandler = (fieldName: IFields, value: IData[] | null) => {
+  const setValueHandler = (fieldName: IFields, value: string | null) => {
     //@ts-ignore
     setValue(fieldName, value || [], { shouldValidate: true });
   };
@@ -93,12 +93,13 @@ const FormEmployee: FC<IFormNewEmployee> = ({
       <InputMultipleData
         name="multiSkills"
         label="Технология и уровень"
+        defaultValues={JSON.stringify(defaultValues?.skills)}
         onChange={(data) => {
-          setValueHandler("skills", data);
+          setValueHandler("skills", JSON.stringify(data));
         }}
       >
         <>
-          <input {...register("skills")} type={"hidden"} />
+          <input {...register("skills")} type={"text"} />
           {!!errors.skills?.message && (
             <p className={styles.errorText}>{errors.skills?.message}</p>
           )}
@@ -107,12 +108,13 @@ const FormEmployee: FC<IFormNewEmployee> = ({
       <InputMultipleData
         name="multiProj"
         label="Предыдущие проекты"
+        defaultValues={JSON.stringify(defaultValues?.projects)}
         onChange={(data) => {
-          setValueHandler("projects", data);
+          setValueHandler("projects", JSON.stringify(data));
         }}
       >
         <>
-          <input {...register("projects")} type={"hidden"} />
+          <input {...register("projects")} type={"text"} />
           {!!errors.projects?.message && (
             <p className={styles.errorText}>{errors.projects?.message}</p>
           )}

@@ -1,17 +1,19 @@
-import React, { useState, FC } from "react";
+import React, { useState, FC, useEffect } from "react";
 import { Chip, IconButton, TextField } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import styles from "./InputMultipleData.module.scss";
+import { generateHash } from "@/utils/hashGenerate";
 
 export interface IData {
-  id: number;
+  id: string;
   text: string;
 }
 
 interface IInputMultipleData {
-  onChange: (skills: [] | null) => void;
+  onChange: (data: [] | null) => void;
   label: string;
   name: string;
+  defaultValues?: string;
   children?: JSX.Element;
 }
 
@@ -20,31 +22,15 @@ const InputMultipleData: FC<IInputMultipleData> = ({
   name,
   onChange,
   children,
+  defaultValues,
 }) => {
   const [inputVal, setInputVal] = useState<string>("");
   const [data, setData] = useState<IData[] | null>(null);
 
-  // const submitHandler = ({ text }: { text: string }) => {
-  //   const newSkill: IData = {
-  //     id: new Date().getTime(),
-  //     text,
-  //   };
-  //   setSkills((prev) => {
-  //     if (prev !== null) {
-  //       const newArr = [...prev, newSkill];
-  //       onChange(JSON.stringify(newArr));
-  //       return newArr;
-  //     } else {
-  //       const newArr = [newSkill];
-  //       onChange(JSON.stringify(newArr));
-  //       return newArr;
-  //     }
-  //   });
-  // };
   const addNewItemToData = () => {
     if (inputVal.trim() !== "") {
       const newData: IData = {
-        id: new Date().getTime(),
+        id: generateHash(),
         text: inputVal,
       };
       setData((prev) => {
@@ -62,7 +48,7 @@ const InputMultipleData: FC<IInputMultipleData> = ({
     }
   };
 
-  const deleteElementClickHandler = (id: number) => {
+  const deleteElementClickHandler = (id: string) => {
     setData((prev) => {
       const filteredArr = prev?.filter((el) => el.id !== id);
       if (filteredArr?.length) {
@@ -81,6 +67,12 @@ const InputMultipleData: FC<IInputMultipleData> = ({
   }: React.ChangeEvent<HTMLInputElement>) => {
     setInputVal(value);
   };
+
+  useEffect(() => {
+    if (defaultValues) {
+      setData(JSON.parse(defaultValues));
+    }
+  }, [defaultValues]);
 
   return (
     <div className={styles.wrapper}>

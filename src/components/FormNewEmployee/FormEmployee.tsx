@@ -4,16 +4,18 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema, IInitialValues } from "./formData";
-import styles from "./FormNewEmployee.module.scss";
+import styles from "./FormEmployee.module.scss";
 import { InputMultipleData } from "@/components/InputMultipleData";
 import { IData } from "../InputMultipleData/InputMultipleData";
 import { IEmployer } from "@/models/IEmployer";
 interface IFormNewEmployee {
   onSubmit: (user: IEmployer) => void;
+  defaultValues?: Omit<IEmployer, "id">;
 }
 
 type IFields = "name" | "skills" | "positionAtWork" | "avatar" | "projects";
-const FormNewEmployee: FC<IFormNewEmployee> = ({ onSubmit }) => {
+
+const FormEmployee: FC<IFormNewEmployee> = ({ onSubmit, defaultValues }) => {
   const {
     register,
     handleSubmit,
@@ -21,6 +23,14 @@ const FormNewEmployee: FC<IFormNewEmployee> = ({ onSubmit }) => {
     setValue,
     formState: { errors },
   } = useForm<IInitialValues>({
+    defaultValues: {
+      name: defaultValues?.name,
+      positionAtWork: defaultValues?.positionAtWork,
+      avatar: defaultValues?.avatar,
+      currentProject: defaultValues?.currentProject,
+      skills: defaultValues?.skills.toString(),
+      projects: defaultValues?.projects.toString(),
+    },
     mode: "onChange",
     resolver: yupResolver(validationSchema),
   });
@@ -105,4 +115,4 @@ const FormNewEmployee: FC<IFormNewEmployee> = ({ onSubmit }) => {
   );
 };
 
-export default FormNewEmployee;
+export default FormEmployee;

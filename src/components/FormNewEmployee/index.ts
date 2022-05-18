@@ -1,1 +1,1 @@
-export { default as FormNewEmployee } from "./FormNewEmployee";
+export { default as FormNewEmployee } from "./FormEmployee";

@@ -1,4 +1,4 @@
-import { FormNewEmployee } from "@/components/FormNewEmployee";
+import { FormEmployee } from "@/components/FormEmployee";
 import { IEmployer } from "@/models/IEmployer";
 import { useEmployeesActions } from "@/store/employees/employeesActions";
 
@@ -9,9 +9,9 @@ const CreateEmployeePage = () => {
   };
   return (
     <div>
-      <FormNewEmployee onSubmit={createEmployeeSubmitHandler} />
+      <FormEmployee onSubmit={createEmployeeSubmitHandler} />
     </div>
   );
-};;
+};
 
 export default CreateEmployeePage;

@@ -16,7 +16,7 @@ const EmployerCard: FC<IEmployerCard> = ({
   positionAtWork,
 }) => {
   return (
-    <Link className={styles.link} to={`employer/${id}`}>
+    <Link className={styles.link} to={`/employer/${id}`}>
       <div className={styles.card}>
         <img
           className={styles.avatar}

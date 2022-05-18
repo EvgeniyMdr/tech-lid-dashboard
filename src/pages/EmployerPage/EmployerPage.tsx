@@ -3,7 +3,7 @@ import { deleteEmployerFx } from "@/store/employer/employer";
 import { Button } from "@mui/material";
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from "./EmployerPage.module.scss";
 
 const EmployerPage = () => {
@@ -14,8 +14,6 @@ const EmployerPage = () => {
   useEffect(() => {
     getEmployerFx(id || "");
   }, [id]);
-
-  console.log("employer", employer);
 
   const deleteHandler = () => {
     deleteEmployerFx(id || "");
@@ -51,9 +49,11 @@ const EmployerPage = () => {
         </div>
       )}
       <div className={styles.controllers}>
-        <Button variant="contained" color="secondary">
-          Редактировать
-        </Button>
+        <Link replace={true} to={`/edit-employer/${id}`}>
+          <Button variant="contained" color="secondary">
+            Редактировать
+          </Button>
+        </Link>
         <Button onClick={deleteHandler} variant="contained" color="error">
           Удалить
         </Button>

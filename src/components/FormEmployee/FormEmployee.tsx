@@ -10,7 +10,7 @@ import { IData } from "../InputMultipleData/InputMultipleData";
 import { IEmployer } from "@/models/IEmployer";
 interface IFormNewEmployee {
   onSubmit: (user: IEmployer) => void;
-  defaultValues?: Omit<IEmployer, "id">;
+  defaultValues?: IEmployer | null;
 }
 
 type IFields = "name" | "skills" | "positionAtWork" | "avatar" | "projects";

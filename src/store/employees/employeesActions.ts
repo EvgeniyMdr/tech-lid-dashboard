@@ -30,7 +30,24 @@ export const useEmployeesActions = () => {
       });
     }
   };
+
+  const updateEmployer = async (userId: string, user: IEmployer) => {
+    try {
+      await axios.patch(`http://localhost:3000/employees/${userId}`, {
+        ...user,
+      });
+      snack.enqueueSnackbar(`Пользователь ${user.name} обновлен`, {
+        variant: "success",
+      });
+      navigate(`/employer/:${userId}`);
+    } catch (e) {
+      snack.enqueueSnackbar(`Ошибка редактирования пользователя`, {
+        variant: "error",
+      });
+    }
+  };
   return {
     createEmployee,
+    updateEmployer,
   };
 };

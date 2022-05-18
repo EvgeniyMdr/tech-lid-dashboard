@@ -49,7 +49,11 @@ const EmployerPage = () => {
         </div>
       )}
       <div className={styles.controllers}>
-        <Link replace={true} to={`/edit-employer/${id}`}>
+        <Link
+          className={styles.link}
+          replace={true}
+          to={`/edit-employer/${id}`}
+        >
           <Button variant="contained" color="secondary">
             Редактировать
           </Button>

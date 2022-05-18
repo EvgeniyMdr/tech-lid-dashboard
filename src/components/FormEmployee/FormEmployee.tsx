@@ -99,7 +99,7 @@ const FormEmployee: FC<IFormNewEmployee> = ({
         }}
       >
         <>
-          <input {...register("skills")} type={"text"} />
+          <input {...register("skills")} type={"hidden"} />
           {!!errors.skills?.message && (
             <p className={styles.errorText}>{errors.skills?.message}</p>
           )}
@@ -114,7 +114,7 @@ const FormEmployee: FC<IFormNewEmployee> = ({
         }}
       >
         <>
-          <input {...register("projects")} type={"text"} />
+          <input {...register("projects")} type={"hidden"} />
           {!!errors.projects?.message && (
             <p className={styles.errorText}>{errors.projects?.message}</p>
           )}

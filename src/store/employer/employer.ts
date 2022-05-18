@@ -9,8 +9,7 @@ export const getEmployerFx = createEffect(async (id: string) => {
 
 export const deleteEmployerFx = createEffect(async (id: string) => {
   try {
-    const resp = await axios.delete(`http://localhost:3000/employees/${id}`);
-    console.log("resp");
+    await axios.delete(`http://localhost:3000/employees/${id}`);
   } catch (err) {
     console.error(err);
   }

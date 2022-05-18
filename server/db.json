@@ -18,45 +18,6 @@
           "text": "React-middle"
         }
       ]
-    },
-    {
-      "id": "_20lzfe2",
-      "avatar": "",
-      "currentProject": "1QNC",
-      "name": "1Гоев Сергей",
-      "positionAtWork": "1Реакт разработчик",
-      "projects": [
-        {
-          "id": 111651922551365,
-          "text": "Savinger-web"
-        }
-      ],
-      "skills": [
-        {
-          "id": 111651922539641,
-          "text": "React-middle"
-        }
-      ]
-    },
-    {
-      "id": "_14lzfe2",
-      "avatar": "",
-      "currentProject": "1QNC",
-      "name": "1Гоев Сергей",
-      "positionAtWork": "1Реакт разработчик",
-      "projects": [
-        {
-          "id": 111651922551365,
-          "text": "Savinger-web"
-        }
-      ],
-      "skills": [
-        {
-          "id": 111651922539641,
-          "text": "React-middle"
-        }
-      ]
     }
-  ],
-  "comments": []
+  ]
 }

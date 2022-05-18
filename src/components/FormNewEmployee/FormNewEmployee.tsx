@@ -5,11 +5,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema, IInitialValues } from "./formData";
 import styles from "./FormNewEmployee.module.scss";
-import { IShortEmployeeData } from "@/models/user";
 import { InputMultipleData } from "@/components/InputMultipleData";
 import { IData } from "../InputMultipleData/InputMultipleData";
+import { IEmployer } from "@/models/IEmployer";
 interface IFormNewEmployee {
-  onSubmit: (user: IShortEmployeeData) => void;
+  onSubmit: (user: IEmployer) => void;
 }
 
 type IFields = "name" | "skills" | "positionAtWork" | "avatar" | "projects";
@@ -25,7 +25,7 @@ const FormNewEmployee: FC<IFormNewEmployee> = ({ onSubmit }) => {
     resolver: yupResolver(validationSchema),
   });
 
-  const submitHandler = (user: IShortEmployeeData) => {
+  const submitHandler = (user: any) => {
     reset();
     onSubmit(user);
   };

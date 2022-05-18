@@ -1,18 +1,35 @@
-import { db } from "@/api";
-import { IShortEmployeeData } from "@/models/user";
-import { doc, setDoc } from "firebase/firestore";
+import axios from "axios";
+import { IEmployer } from "@/models/IEmployer";
+import { generateHash } from "@/utils/hashGenerate";
+import { useSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 
 export const useEmployeesActions = () => {
-  const createEmployee = async (user: IShortEmployeeData) => {
-    const id = `${new Date().getTime()}`;
+  const snack = useSnackbar();
+  const navigate = useNavigate();
+
+  const createEmployee = async (user: IEmployer) => {
+    const id = generateHash();
     try {
-      await setDoc(doc(db, "users", id), user);
-      console.log("Материал создан", { variant: "success" });
+      await axios.post("http://localhost:3000/employees", {
+        id,
+        avatar: user.avatar,
+        currentProject: user.currentProject,
+        name: user.name,
+        positionAtWork: user.positionAtWork,
+        projects: user.projects,
+        skills: user.skills,
+      });
+      snack.enqueueSnackbar(`Пользователь ${user.name}`, {
+        variant: "success",
+      });
+      navigate("/");
     } catch (e) {
-      console.log("ошибка при создании материала", { variant: "error" });
+      snack.enqueueSnackbar(`Ошибка создания пользователя`, {
+        variant: "error",
+      });
     }
   };
-
   return {
     createEmployee,
   };

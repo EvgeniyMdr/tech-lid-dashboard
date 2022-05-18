@@ -1,4 +1,4 @@
-import { IEmployer } from "@/models/employer";
+import { IEmployer } from "@/models/IEmployer";
 import axios from "axios";
 import { createEffect, createStore } from "effector";
 

@@ -10,12 +10,17 @@ import { IData } from "../InputMultipleData/InputMultipleData";
 import { IEmployer } from "@/models/IEmployer";
 interface IFormNewEmployee {
   onSubmit: (user: IEmployer) => void;
+  type: "update" | "create";
   defaultValues?: IEmployer | null;
 }
 
 type IFields = "name" | "skills" | "positionAtWork" | "avatar" | "projects";
 
-const FormEmployee: FC<IFormNewEmployee> = ({ onSubmit, defaultValues }) => {
+const FormEmployee: FC<IFormNewEmployee> = ({
+  onSubmit,
+  type,
+  defaultValues,
+}) => {
   const {
     register,
     handleSubmit,
@@ -51,7 +56,12 @@ const FormEmployee: FC<IFormNewEmployee> = ({ onSubmit, defaultValues }) => {
       component={"form"}
       onSubmit={handleSubmit(submitHandler)}
     >
-      <DialogTitle>Форма создания сотрудника</DialogTitle>
+      {type === "create" && (
+        <DialogTitle>Форма создания сотрудника</DialogTitle>
+      )}
+      {type === "update" && (
+        <DialogTitle>Форма редактирования сотрудника</DialogTitle>
+      )}
       <TextField
         {...register("name")}
         type="text"
@@ -108,9 +118,16 @@ const FormEmployee: FC<IFormNewEmployee> = ({ onSubmit, defaultValues }) => {
           )}
         </>
       </InputMultipleData>
-      <LoadingButton loading={false} type="submit" variant="contained">
-        Создать
-      </LoadingButton>
+      {type === "create" && (
+        <LoadingButton type="submit" variant="contained">
+          Создать
+        </LoadingButton>
+      )}
+      {type === "update" && (
+        <LoadingButton type="submit" variant="contained">
+          Обновить
+        </LoadingButton>
+      )}
     </Box>
   );
 };

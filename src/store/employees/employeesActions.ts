@@ -39,7 +39,7 @@ export const useEmployeesActions = () => {
       snack.enqueueSnackbar(`Пользователь ${user.name} обновлен`, {
         variant: "success",
       });
-      navigate(`/employer/:${userId}`);
+      navigate(`/employer/${userId}`);
     } catch (e) {
       snack.enqueueSnackbar(`Ошибка редактирования пользователя`, {
         variant: "error",

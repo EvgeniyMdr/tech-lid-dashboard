@@ -24,6 +24,7 @@ const EditEmployerPage = () => {
 
   return (
     <FormEmployee
+      type="update"
       onSubmit={updateEmployeeSubmitHandler}
       defaultValues={employer}
     />

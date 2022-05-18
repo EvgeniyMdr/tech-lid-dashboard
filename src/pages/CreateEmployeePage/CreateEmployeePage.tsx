@@ -9,7 +9,7 @@ const CreateEmployeePage = () => {
   };
   return (
     <div>
-      <FormEmployee onSubmit={createEmployeeSubmitHandler} />
+      <FormEmployee type="create" onSubmit={createEmployeeSubmitHandler} />
     </div>
   );
 };

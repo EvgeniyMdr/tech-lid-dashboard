@@ -20,17 +20,31 @@
       ]
     },
     {
-      "id": "_2kz7u6i",
+      "id": "_ifcqgpr",
       "avatar": "",
-      "currentProject": "1231",
-      "name": "12",
-      "positionAtWork": "123",
+      "currentProject": "фыв",
+      "name": "Евгений Велковский",
+      "positionAtWork": "React",
       "projects": [
         {
-          "id": "_pi2uluo",
-          "text": "asdsd"
+          "id": "_ohflfnz",
+          "text": "ф"
         }
       ],
+      "skills": [
+        {
+          "id": "_7n10iwv",
+          "text": "ф"
+        }
+      ]
+    },
+    {
+      "id": "_c2icpnw",
+      "avatar": "ф",
+      "currentProject": "ф",
+      "name": "Евгений Велковский",
+      "positionAtWork": "фыв",
+      "projects": null,
       "skills": null
     }
   ]

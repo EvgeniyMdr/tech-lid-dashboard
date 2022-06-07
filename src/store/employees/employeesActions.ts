@@ -20,7 +20,7 @@ export const useEmployeesActions = () => {
         projects: user.projects,
         skills: user.skills,
       });
-      snack.enqueueSnackbar(`Пользователь ${user.name}`, {
+      snack.enqueueSnackbar(`Профиль пользователя ${user.name} создан`, {
         variant: "success",
       });
       navigate("/");

@@ -5,6 +5,7 @@ import { IconButton } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useAuthActions } from "@/store/auth/authActions";
 import { useNavigate } from "react-router-dom";
+import { Search } from "../Search";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const Header = () => {
         <Logo />
         <LogoText />
       </div>
+      <Search />
       <IconButton
         className={styles.logoutBtn}
         aria-label="logout"

@@ -1,0 +1,24 @@
+.link {
+  display: inline-block;
+  border: 1px solid #010203;
+  margin-bottom: 4px;
+  padding: 8px;
+  text-decoration: none;
+  color: #000;
+  border-radius: 4px;
+  font-weight: bold;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.search {
+  position: relative;
+}
+
+.usersWrapper {
+  width: 100%;
+  padding-top: 8px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
